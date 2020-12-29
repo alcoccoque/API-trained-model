@@ -1,0 +1,105 @@
+{
+"description":{
+    "X": [
+        "ID",
+        "name",
+        "category",
+        "main_category",
+        "currency",
+        "deadline",
+        "goal",
+        "launched",
+        "pledged",
+        "backers",
+        "country",
+        "usd pledged",
+        "usd_pledged_real",
+        "usd_goal_real",
+        "Days to deadline"
+    ],
+    "final_columns":[
+                "main_category",
+                "backers",
+                "country",
+                "usd_pledged_real",
+                "usd_goal_real",
+                "Days to deadline"
+    ],
+    "y":"state",
+    "metrics":"accuracy_score"
+},
+"operations":[
+    {
+            "operation_number": 1,
+            "operation_name": "replace",
+            "params": {
+                "in_columns": [
+                    "usd_pledged_real"
+                ],
+                "old_values": [
+                    "usd_pledged_real"
+                ],
+                "new_values": [
+                    "usd pledged"
+                ],
+                "condition_columns": [
+                    "country"
+                ],
+                "conditions": [
+                    "equal"
+                ],
+                "condition_values": [
+                    "US"
+                ],
+                "inplaces": [
+                    "True"
+                ]
+            }
+        },
+        {
+            "operation_number": 2,
+            "operation_name": "replace",
+            "params": {
+                "in_columns": [
+                    "country"
+                ],
+                "old_values": [
+                    "N,0\""
+                ],
+                "new_values": [
+                    "US"
+                ],
+                "inplaces": [
+                    "True"
+                ]
+            }
+        },
+        {
+            "operation_number": 3,
+            "operation_name": "drop_columns",
+            "params": {
+                "in_columns": [
+                    "goal",
+                    "pledged",
+                    "ID",
+                    "name",
+                    "usd pledged",
+                    "currency",
+                    "category",
+                    "deadline ",
+                    "launched"
+                ]
+            }
+        },
+        {
+            "operation_number": 4,
+            "operation_name": "encode_labels",
+            "params": {
+                "in_columns": [
+                    "main_category",
+                    "country"
+                ]
+            }
+        }
+    ]
+}
